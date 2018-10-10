@@ -1,0 +1,127 @@
+2018-10-08 11:27:06.674  INFO 34112 --- [restartedMain] br.edu.utfpr.rest.RestSpringApplication  : Starting RestSpringApplication on DESKTOP-OFOKR4R with PID 34112 (C:\Desenvolvimento\Projetos\rest-spring\target\classes started by ronifabio in C:\Desenvolvimento\Projetos\rest-spring)
+2018-10-08 11:27:06.674  INFO 34112 --- [restartedMain] br.edu.utfpr.rest.RestSpringApplication  : The following profiles are active: dev
+2018-10-08 11:27:06.674  INFO 34112 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2f7c21bc: startup date [Mon Oct 08 11:27:06 BRT 2018]; root of context hierarchy
+2018-10-08 11:27:07.379  INFO 34112 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$68ec669d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-10-08 11:27:07.510  INFO 34112 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-10-08 11:27:07.519  INFO 34112 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-10-08 11:27:07.520  INFO 34112 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-10-08 11:27:07.549  INFO 34112 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-10-08 11:27:07.551  INFO 34112 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 877 ms
+2018-10-08 11:27:07.571  INFO 34112 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-10-08 11:27:07.571  INFO 34112 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet webServlet mapped to [/h2-console/*]
+2018-10-08 11:27:07.571  INFO 34112 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-10-08 11:27:07.571  INFO 34112 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-10-08 11:27:07.571  INFO 34112 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-10-08 11:27:07.571  INFO 34112 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-10-08 11:27:07.620  INFO 34112 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2018-10-08 11:27:07.622  INFO 34112 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2018-10-08 11:27:07.632  INFO 34112 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-10-08 11:27:07.632  INFO 34112 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-10-08 11:27:07.650  INFO 34112 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-10-08 11:27:07.816  INFO 34112 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-10-08 11:27:07.863  INFO 34112 --- [restartedMain] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-10-08 11:27:08.004  WARN 34112 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-10-08 11:27:08.020  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<br.edu.utfpr.rest.util.Response<br.edu.utfpr.rest.model.dto.StudentDTO>> br.edu.utfpr.rest.controller.StudentResource.get(java.lang.Long)
+2018-10-08 11:27:08.020  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos/inicializa],methods=[GET]}" onto public void br.edu.utfpr.rest.controller.StudentResource.init()
+2018-10-08 11:27:08.020  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos],methods=[GET]}" onto public java.util.List<br.edu.utfpr.rest.model.Student> br.edu.utfpr.rest.controller.StudentResource.list()
+2018-10-08 11:27:08.020  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos/sobrenome/{sobrenome}],methods=[GET]}" onto public java.util.List<br.edu.utfpr.rest.model.Student> br.edu.utfpr.rest.controller.StudentResource.listByNameEndWith(java.lang.String)
+2018-10-08 11:27:08.020  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos],methods=[POST]}" onto public org.springframework.http.ResponseEntity<br.edu.utfpr.rest.util.Response<br.edu.utfpr.rest.model.dto.StudentDTO>> br.edu.utfpr.rest.controller.StudentResource.post(br.edu.utfpr.rest.model.dto.StudentDTO,org.springframework.validation.BindingResult)
+2018-10-08 11:27:08.020  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos/curso/{course}],methods=[GET]}" onto public java.util.List<br.edu.utfpr.rest.model.Student> br.edu.utfpr.rest.controller.StudentResource.listByCourse(java.lang.String)
+2018-10-08 11:27:08.020  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos/cpf/{cpf}],methods=[GET]}" onto public br.edu.utfpr.rest.model.dto.StudentDTO br.edu.utfpr.rest.controller.StudentResource.listByCPF(java.lang.String)
+2018-10-08 11:27:08.020  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos/cpf],methods=[GET]}" onto public br.edu.utfpr.rest.model.dto.StudentDTO br.edu.utfpr.rest.controller.StudentResource.listByCPFParam(java.lang.String)
+2018-10-08 11:27:08.025  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2018-10-08 11:27:08.025  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2018-10-08 11:27:08.025  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2018-10-08 11:27:08.025  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-10-08 11:27:08.025  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-10-08 11:27:08.075  INFO 34112 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2018-10-08 11:27:08.095  INFO 34112 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-10-08 11:27:08.125  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2f7c21bc: startup date [Mon Oct 08 11:27:06 BRT 2018]; root of context hierarchy
+2018-10-08 11:27:08.135  INFO 34112 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-10-08 11:27:08.135  INFO 34112 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-10-08 11:27:08.204  INFO 34112 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-10-08 11:27:08.216  INFO 34112 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-10-08 11:27:08.216  INFO 34112 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-10-08 11:27:08.224  INFO 34112 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-10-08 11:27:08.226  INFO 34112 --- [restartedMain] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-10-08 11:27:08.226  INFO 34112 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2018-10-08 11:27:08.226  INFO 34112 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2018-10-08 11:27:08.236  INFO 34112 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2018-10-08 11:27:08.286  INFO 34112 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2018-10-08 11:27:08.286  INFO 34112 --- [restartedMain] br.edu.utfpr.rest.RestSpringApplication  : Started RestSpringApplication in 1.65 seconds (JVM running for 554.404)
+2018-10-08 11:27:08.296  INFO 34112 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2018-10-08 11:27:10.520  INFO 34112 --- [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-10-08 11:27:10.520  INFO 34112 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-10-08 11:27:10.552  INFO 34112 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 32 ms
+2018-10-08 11:27:10.584  INFO 34112 --- [http-nio-8080-exec-3] b.edu.utfpr.rest.service.StudentService  : Buscando pelo CPF 04954413419
+2018-10-08 11:27:20.691  INFO 34112 --- [http-nio-8080-exec-2] b.edu.utfpr.rest.service.StudentService  : Buscando pelo CPF 04954413419
+2018-10-08 11:28:05.178  INFO 34112 --- [Thread-10] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2f7c21bc: startup date [Mon Oct 08 11:27:06 BRT 2018]; root of context hierarchy
+2018-10-08 11:28:05.178  INFO 34112 --- [Thread-10] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-10-08 11:28:05.178  INFO 34112 --- [Thread-10] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-10-08 11:28:05.178  INFO 34112 --- [Thread-10] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-10-08 11:28:05.178  INFO 34112 --- [Thread-10] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-10-08 11:28:05.178  INFO 34112 --- [Thread-10] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2018-10-08 11:28:05.194  INFO 34112 --- [Thread-10] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2018-10-08 11:28:05.551  INFO 34112 --- [restartedMain] br.edu.utfpr.rest.RestSpringApplication  : Starting RestSpringApplication on DESKTOP-OFOKR4R with PID 34112 (C:\Desenvolvimento\Projetos\rest-spring\target\classes started by ronifabio in C:\Desenvolvimento\Projetos\rest-spring)
+2018-10-08 11:28:05.551  INFO 34112 --- [restartedMain] br.edu.utfpr.rest.RestSpringApplication  : The following profiles are active: dev
+2018-10-08 11:28:05.551  INFO 34112 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1bf87d0d: startup date [Mon Oct 08 11:28:05 BRT 2018]; root of context hierarchy
+2018-10-08 11:28:06.179  INFO 34112 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$68ec669d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-10-08 11:28:06.300  INFO 34112 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-10-08 11:28:06.302  INFO 34112 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-10-08 11:28:06.302  INFO 34112 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-10-08 11:28:06.328  INFO 34112 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-10-08 11:28:06.330  INFO 34112 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 779 ms
+2018-10-08 11:28:06.350  INFO 34112 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-10-08 11:28:06.350  INFO 34112 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet webServlet mapped to [/h2-console/*]
+2018-10-08 11:28:06.350  INFO 34112 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-10-08 11:28:06.350  INFO 34112 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-10-08 11:28:06.350  INFO 34112 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-10-08 11:28:06.350  INFO 34112 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-10-08 11:28:06.391  INFO 34112 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2018-10-08 11:28:06.401  INFO 34112 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2018-10-08 11:28:06.411  INFO 34112 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-10-08 11:28:06.411  INFO 34112 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-10-08 11:28:06.426  INFO 34112 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-10-08 11:28:07.075  INFO 34112 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-10-08 11:28:07.117  INFO 34112 --- [restartedMain] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-10-08 11:28:07.228  WARN 34112 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-10-08 11:28:07.238  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<br.edu.utfpr.rest.util.Response<br.edu.utfpr.rest.model.dto.StudentDTO>> br.edu.utfpr.rest.controller.StudentResource.get(java.lang.Long)
+2018-10-08 11:28:07.238  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos/inicializa],methods=[GET]}" onto public void br.edu.utfpr.rest.controller.StudentResource.init()
+2018-10-08 11:28:07.238  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos],methods=[GET]}" onto public java.util.List<br.edu.utfpr.rest.model.Student> br.edu.utfpr.rest.controller.StudentResource.list()
+2018-10-08 11:28:07.238  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos/sobrenome/{sobrenome}],methods=[GET]}" onto public java.util.List<br.edu.utfpr.rest.model.Student> br.edu.utfpr.rest.controller.StudentResource.listByNameEndWith(java.lang.String)
+2018-10-08 11:28:07.238  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos],methods=[POST]}" onto public org.springframework.http.ResponseEntity<br.edu.utfpr.rest.util.Response<br.edu.utfpr.rest.model.dto.StudentDTO>> br.edu.utfpr.rest.controller.StudentResource.post(br.edu.utfpr.rest.model.dto.StudentDTO,org.springframework.validation.BindingResult)
+2018-10-08 11:28:07.238  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos/curso/{course}],methods=[GET]}" onto public java.util.List<br.edu.utfpr.rest.model.Student> br.edu.utfpr.rest.controller.StudentResource.listByCourse(java.lang.String)
+2018-10-08 11:28:07.238  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos/cpf/{cpf}],methods=[GET]}" onto public br.edu.utfpr.rest.model.dto.StudentDTO br.edu.utfpr.rest.controller.StudentResource.listByCPF(java.lang.String)
+2018-10-08 11:28:07.238  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/alunos/cpf],methods=[GET]}" onto public br.edu.utfpr.rest.model.dto.StudentDTO br.edu.utfpr.rest.controller.StudentResource.listByCPFParam(java.lang.String)
+2018-10-08 11:28:07.246  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2018-10-08 11:28:07.246  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2018-10-08 11:28:07.246  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2018-10-08 11:28:07.248  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-10-08 11:28:07.248  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-10-08 11:28:07.278  INFO 34112 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2018-10-08 11:28:07.300  INFO 34112 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-10-08 11:28:07.329  INFO 34112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1bf87d0d: startup date [Mon Oct 08 11:28:05 BRT 2018]; root of context hierarchy
+2018-10-08 11:28:07.339  INFO 34112 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-10-08 11:28:07.339  INFO 34112 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-10-08 11:28:07.399  INFO 34112 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-10-08 11:28:07.420  INFO 34112 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-10-08 11:28:07.421  INFO 34112 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-10-08 11:28:07.424  INFO 34112 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-10-08 11:28:07.426  INFO 34112 --- [restartedMain] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-10-08 11:28:07.426  INFO 34112 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2018-10-08 11:28:07.428  INFO 34112 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2018-10-08 11:28:07.437  INFO 34112 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2018-10-08 11:28:07.501  INFO 34112 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2018-10-08 11:28:07.501  INFO 34112 --- [restartedMain] br.edu.utfpr.rest.RestSpringApplication  : Started RestSpringApplication in 1.981 seconds (JVM running for 613.614)
+2018-10-08 11:28:07.501  INFO 34112 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2018-10-08 11:29:12.405  INFO 34112 --- [Thread-16] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1bf87d0d: startup date [Mon Oct 08 11:28:05 BRT 2018]; root of context hierarchy
+2018-10-08 11:29:12.405  INFO 34112 --- [Thread-16] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-10-08 11:29:12.405  INFO 34112 --- [Thread-16] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-10-08 11:29:12.405  INFO 34112 --- [Thread-16] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-10-08 11:29:12.405  INFO 34112 --- [Thread-16] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-10-08 11:29:12.405  INFO 34112 --- [Thread-16] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2018-10-08 11:29:12.405  INFO 34112 --- [Thread-16] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
