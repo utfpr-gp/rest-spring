@@ -29,8 +29,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -69,8 +72,9 @@ public class StudentController {
 
     /**
      * 
-     * Não é boa prática! Demonstração do retorno de uma entidade de banco de dados.
-     * Também não é boa prática o uso do Repository no Controller.
+     * <p>Não é boa prática! </p>
+     * <p>Demonstração do retorno de uma entidade de banco de dados.</p>
+     * <p>Também não é boa prática o uso do Repository no Controller.</p>
      * 
      * @return
      */
@@ -81,10 +85,10 @@ public class StudentController {
 
     /**
      * 
-     * Busca com atributos de paginação e retorno de uma lista de DTOs Uso:
-     * /api/alunos/paginacao-dto?pag=1,ord=name Se os parâmetros de query não forem
-     * passados, os valores default serão usados. O ResponseEntity carrega o código
-     * de status. O Response é usado para padronizar as respostas.
+     * <p>Busca com atributos de paginação e retorno de uma lista de DTOs. </p> 
+     * <p>Uso: <pre>/api/alunos/paginacao-dto?pag=1&ord=name</pre> </p>
+     * <p>Se os parâmetros de query não forem passados, os valores default serão usados. </p>
+     * <p>O ResponseEntity carrega o código de status. O Response é usado para padronizar as respostas.</p>
      * 
      * @param page
      * @param order
@@ -110,11 +114,14 @@ public class StudentController {
 
     /**
      * 
-     * Busca com parâmetros de paginação e retorno de uma lista de Page Uso:
-     * /api/alunos/paginacao-page?pag=1,ord=name Se os parâmetros de query não forem
-     * passados, os valores default serão usados. Um Page possui informações
+     * <p>Busca com parâmetros de paginação e retorno de uma lista de Page. </p> 
+     * <p>Uso: <pre>
+     * /api/alunos/paginacao-page?pag=1&ord=name</pre></p> 
+     * <p>Se os parâmetros de query não forem
+     * passados, os valores default serão usados. </p>
+     * <p>Um Page possui informações
      * adicionais sobre a paginação, tal como o total de registros e se há uma
-     * próxima página, entre outros.
+     * próxima página, entre outros.</p>
      * 
      * @param page
      * @param order
@@ -137,11 +144,34 @@ public class StudentController {
         response.setData(studentDTOs);
         return ResponseEntity.ok(response);
     }
+    
+    /**
+     * 
+     * <p>Busca com paginação recebendo como argumento um Pageable.</p>
+     * <p>@PageableDefault é opcional, serve para definir parâmetros default.</p>
+     * <p>Uso: <pre>/api/alunos/paginacao-pageable?page=0&size=10</pre></p>
+     * 
+     * @param pageable
+     * @return
+     */
+    @GetMapping(value = "/paginacao-pageable")
+    public ResponseEntity<Response<Page<StudentDTO>>> findAllPaginationWithPageable(
+    		@PageableDefault(page=0, size=3, direction = Direction.ASC) Pageable pageable) {        
+
+        Response<Page<StudentDTO>> response = new Response<>();       
+
+        Page<Student> students = this.studentRepository.findAll(pageable);
+        Page<StudentDTO> studentDTOs = students.map(s -> new StudentDTO(s));
+        response.setData(studentDTOs);
+        return ResponseEntity.ok(response);
+    }   
+    
 
     /**
      *
-     * Trata de variáveis de caminho Uso: api/alunos/cpf/00022233344 Retorna um
-     * StudentDTO pelo seu CPF.
+     * <p>Trata de variáveis de caminho.</p> 
+     * <p>Uso: <pre>api/alunos/cpf/00022233344 </pre></p> 
+     * <p>Retorna um StudentDTO pelo seu CPF.</p>
      * 
      * @param cpf
      * @return
@@ -166,11 +196,13 @@ public class StudentController {
 
     /**
      *
-     * Trata de parâmetros de query Uso: api/alunos/cpf?numero=00000000000 Retorna
-     * um StudentDTO pelo seu CPF. Não deve ser usado como exemplo em sua completudo
-     * porque não está usando o Response e ResponseEntity para encapsular o DTO.
-     * Exemplo apenas demonstrativo de retorno sem Response, também usado em
-     * aplicações. O ResponseEntity carrega o código de status.
+     * <p>Trata de parâmetros de query.</p> 
+     * <p>Uso: api/alunos/cpf?numero=00000000000 </p> 
+     * <p> Retorna um StudentDTO pelo seu CPF. </p>
+     * <p> Não deve ser usado como exemplo em sua completude
+     * porque não está usando o Response e ResponseEntity para encapsular o DTO.</p>
+     * <p>Exemplo apenas demonstrativo de retorno sem Response, também usado em
+     * aplicações. O ResponseEntity carrega o código de status.</p>
      * 
      * @param cpf
      * @return
@@ -193,7 +225,8 @@ public class StudentController {
     }
 
     /**
-     * Busca um aluno pela matrícula. Uso: /api/alunos/2
+     * Busca um aluno pela matrícula. 
+     * <p>Uso: <pre>/api/alunos/2</pre></p>
      * 
      * @param id
      * @return
@@ -216,12 +249,13 @@ public class StudentController {
 
     /**
      * 
-     * Atualiza os dados de um aluno. Recebe o id do aluno pela URL, típico de uma
-     * URL de edição. Recebe os dados do aluno em um DTO, este com atributos
-     * anotados com restrições de validação do BeanValidation Para que tais
-     * anotações de validação sejam analisadas, usa-se @Valid O @RequestBody é usado
-     * para converter o JSON para o objeto StudentDTO O BindingResult é passado como
-     * argumento pelo Spring contendo as informações sobre a validação do DTO.
+     * <p>Atualiza os dados de um aluno. </p>
+     * <p>Recebe o id do aluno pela URL, típico de uma URL de edição.</p>     * 
+     * <p>Recebe os dados do aluno em um DTO, este com atributos
+     * anotados com restrições de validação do BeanValidation. </p>
+     * <p> Para que tais anotações de validação sejam analisadas, usa-se @Valid.</p> 
+     * <p> O @RequestBody é usado para converter o JSON para o objeto StudentDTO. </p> 
+     * <p> O BindingResult é passado como argumento pelo Spring contendo as informações sobre a validação do DTO.</p>
      * 
      * @param id
      * @param dto
