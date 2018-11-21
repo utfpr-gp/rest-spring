@@ -45,9 +45,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 @RequestMapping("/api/alunos")
 @CrossOrigin(origins = "*")
-public class StudentResource {
+public class StudentController {
 
-    public static final Logger log = LoggerFactory.getLogger(StudentResource.class);
+    public static final Logger log = LoggerFactory.getLogger(StudentController.class);
 
     @Autowired
     StudentRepository studentRepository;
@@ -67,12 +67,31 @@ public class StudentResource {
         studentService.init();
     }
 
+    /**
+     * 
+     * Não é boa prática! Demonstração do retorno de uma entidade de banco de dados.
+     * Também não é boa prática o uso do Repository no Controller.
+     * 
+     * @return
+     */
     @RequestMapping(method = GET)
     public List<Student> findAll() {
         return studentRepository.findAll();
     }
 
-    @GetMapping(value = "/pagination")
+    /**
+     * 
+     * Busca com atributos de paginação e retorno de uma lista de DTOs Uso:
+     * /api/alunos/paginacao-dto?pag=1,ord=name Se os parâmetros de query não forem
+     * passados, os valores default serão usados. O ResponseEntity carrega o código
+     * de status. O Response é usado para padronizar as respostas.
+     * 
+     * @param page
+     * @param order
+     * @param direction
+     * @return
+     */
+    @GetMapping(value = "/paginacao-dto")
     public ResponseEntity<Response<List<StudentDTO>>> findAllPagination(
             @RequestParam(value = "pag", defaultValue = "0") int page,
             @RequestParam(value = "ord", defaultValue = "name") String order,
@@ -89,7 +108,20 @@ public class StudentResource {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping(value = "/pagination-with-page")
+    /**
+     * 
+     * Busca com parâmetros de paginação e retorno de uma lista de Page Uso:
+     * /api/alunos/paginacao-page?pag=1,ord=name Se os parâmetros de query não forem
+     * passados, os valores default serão usados. Um Page possui informações
+     * adicionais sobre a paginação, tal como o total de registros e se há uma
+     * próxima página, entre outros.
+     * 
+     * @param page
+     * @param order
+     * @param direction
+     * @return
+     */
+    @GetMapping(value = "/paginacao-page")
     public ResponseEntity<Response<Page<StudentDTO>>> findAllPaginationWithPage(
             @RequestParam(value = "pag", defaultValue = "0") int page,
             @RequestParam(value = "ord", defaultValue = "name") String order,
@@ -108,8 +140,9 @@ public class StudentResource {
 
     /**
      *
-     * Trata de variáveis de caminho
-     *
+     * Trata de variáveis de caminho Uso: api/alunos/cpf/00022233344 Retorna um
+     * StudentDTO pelo seu CPF.
+     * 
      * @param cpf
      * @return
      */
@@ -133,8 +166,12 @@ public class StudentResource {
 
     /**
      *
-     * Trata de parâmetros de query Ex.: /cpf?numero=00000000000
-     *
+     * Trata de parâmetros de query Uso: api/alunos/cpf?numero=00000000000 Retorna
+     * um StudentDTO pelo seu CPF. Não deve ser usado como exemplo em sua completudo
+     * porque não está usando o Response e ResponseEntity para encapsular o DTO.
+     * Exemplo apenas demonstrativo de retorno sem Response, também usado em
+     * aplicações. O ResponseEntity carrega o código de status.
+     * 
      * @param cpf
      * @return
      */
@@ -155,6 +192,12 @@ public class StudentResource {
         return studentRepository.findByNameEndsWith(sobrenome);
     }
 
+    /**
+     * Busca um aluno pela matrícula. Uso: /api/alunos/2
+     * 
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = GET)
     public ResponseEntity<Response<StudentDTO>> get(@PathVariable Long id) {
         Response<StudentDTO> response = new Response<>();
@@ -171,7 +214,21 @@ public class StudentResource {
         return ResponseEntity.ok(response);
     }
 
-    //@RequestMapping(value = "/{id}", method = PUT)
+    /**
+     * 
+     * Atualiza os dados de um aluno. Recebe o id do aluno pela URL, típico de uma
+     * URL de edição. Recebe os dados do aluno em um DTO, este com atributos
+     * anotados com restrições de validação do BeanValidation Para que tais
+     * anotações de validação sejam analisadas, usa-se @Valid O @RequestBody é usado
+     * para converter o JSON para o objeto StudentDTO O BindingResult é passado como
+     * argumento pelo Spring contendo as informações sobre a validação do DTO.
+     * 
+     * @param id
+     * @param dto
+     * @param result
+     * @return ResponseEntity<?>, notação mais abstrata.
+     */
+    // @RequestMapping(value = "/{id}", method = PUT)
     @PutMapping(value = "/{id}")
     public ResponseEntity<?> put(@PathVariable Long id, @Valid @RequestBody StudentDTO dto, BindingResult result) {
 
@@ -181,7 +238,7 @@ public class StudentResource {
             return ResponseEntity.badRequest().body(response);
         }
 
-        //busca pelo aluno
+        // busca pelo aluno
         Optional<Student> o = studentRepository.findById(id);
         if (!o.isPresent()) {
             response.addError("Aluno não encontrado pela matrícula");
@@ -189,7 +246,7 @@ public class StudentResource {
         }
         Student s = o.get();
 
-        //impede atualizar para um CPF já cadastrado
+        // impede atualizar para um CPF já cadastrado
         if (!s.getCpf().equals(dto.getCpf())) {
             if (this.studentRepository.findByCpf(dto.getCpf()) != null) {
                 response.addError("Não é possível atualizar o CPF, já está sendo usado.");
@@ -197,27 +254,36 @@ public class StudentResource {
             }
         }
 
-        //proíbe atualizar a matrícula
+        // proíbe atualizar a matrícula
         if (!s.getRegistration().equals(dto.getRegistration())) {
             response.addError("Não é possível atualizar o número de matrícula.");
             return ResponseEntity.badRequest().body(response);
         }
 
-        //atualiza os dados atribuindo os atributos not null de dto
+        // atualiza os dados atribuindo os atributos not null de dto
         s.update(dto);
         s = studentService.save(s);
 
-        //prepara a resposta
+        // prepara a resposta
         dto = new StudentDTO(s);
         response.setData(dto);
 
         return ResponseEntity.ok(response);
     }
 
-    //@RequestMapping(value = "/{id}", method = POST)
+    /**
+     * 
+     * Cadastra um aluno. Os dados do aluno são recebidos em um DTO com atributos de
+     * validação.
+     * 
+     * @Valid valida os atributos e @RequestBody converte de JSON
+     * @param dto
+     * @param result
+     * @return ResponseEntity<Response<StudentDTO>>, retorno mais específico
+     */
+    // @RequestMapping(value = "/{id}", method = POST)
     @PostMapping
-    public ResponseEntity<Response<StudentDTO>> post(@Valid @RequestBody StudentDTO dto,
-            BindingResult result) {
+    public ResponseEntity<Response<StudentDTO>> post(@Valid @RequestBody StudentDTO dto, BindingResult result) {
 
         Response<StudentDTO> response = new Response<>();
         if (result.hasErrors()) {
@@ -225,7 +291,7 @@ public class StudentResource {
             return ResponseEntity.badRequest().body(response);
         }
 
-        //impede usar post para aluno já cadastrado
+        // impede usar post para aluno já cadastrado
         if (dto.getRegistration() != null) {
             Optional<Student> o = studentRepository.findById(dto.getRegistration());
             if (o.isPresent()) {
@@ -234,24 +300,25 @@ public class StudentResource {
             }
         }
 
-        //persiste o aluno
+        // persiste o aluno
         Student s = new Student(dto);
         try {
             s = studentService.save(s);
         } catch (Exception e) {
-            //trata de problemas gerados por não respeito às constraints do banco - CPF único
+            // trata de problemas gerados por não respeito às constraints do banco - CPF
+            // único
             response.addError("Houve um erro ao persistir os seus dados.");
             return ResponseEntity.badRequest().body(response);
         }
 
-        //prepara a resposta
+        // prepara a resposta
         dto = new StudentDTO(s);
         response.setData(dto);
 
         return ResponseEntity.ok(response);
     }
 
-    //@RequestMapping(value = "/{id}", method = DELETE)
+    // @RequestMapping(value = "/{id}", method = DELETE)
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Response<String>> delete(@PathVariable Long id) {
         log.info("Removendo aluno com id {}", id);
