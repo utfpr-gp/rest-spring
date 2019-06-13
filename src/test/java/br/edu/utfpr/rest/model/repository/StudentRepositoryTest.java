@@ -5,7 +5,7 @@
  */
 package br.edu.utfpr.rest.model.repository;
 
-import br.edu.utfpr.rest.model.Student;
+import br.edu.utfpr.rest.model.entity.Student;
 import br.edu.utfpr.rest.util.CPFUtil;
 import java.util.List;
 import org.junit.After;

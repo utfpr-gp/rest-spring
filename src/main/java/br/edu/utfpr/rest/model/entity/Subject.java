@@ -1,4 +1,4 @@
-package br.edu.utfpr.rest.model;
+package br.edu.utfpr.rest.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,20 +27,20 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "sigla")
+    @Column
     private String acronym;
 
-    @Column(name = "nome")
+    @Column
     private String name;
 
-    @Column(name = "hora_inicio")
+    @Column(name = "start_hour")
     private Integer startHour;
 
-    @Column(name = "hora_fim")
+    @Column(name = "end_hour")
     private Integer endHour;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "dia_da_semana")
+    @Column(name = "day_of_week")
     private DayOfWeek dayOfWeek;
 
     public Subject() {

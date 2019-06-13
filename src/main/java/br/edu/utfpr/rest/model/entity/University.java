@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.utfpr.rest.model;
+package br.edu.utfpr.rest.model.entity;
 
 import java.io.Serializable;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,16 +30,16 @@ public class University implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome")
+    @Column
     private String name;
 
-    @Column(name = "abreviacao")
+    @Column
     private String abbvr;
 
-    @Column(name = "cidade")
+    @Column
     private String city;
 
-    @Column(name = "estado")
+    @Column
     private String state;
 
     @OneToMany

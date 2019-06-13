@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.utfpr.rest.service;
+package br.edu.utfpr.rest.model.service;
 
-import br.edu.utfpr.rest.model.Student;
+import br.edu.utfpr.rest.model.entity.Student;
 import br.edu.utfpr.rest.model.repository.StudentRepository;
 import br.edu.utfpr.rest.util.CPFUtil;
 import java.util.Arrays;
@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -41,6 +43,7 @@ public class StudentService {
         studentRepository.saveAll(students);
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS)
     public Student findByCPF(String cpf) {
         log.info("Buscando pelo CPF {}", cpf);
         return studentRepository.findByCpf(cpf);
@@ -50,5 +53,14 @@ public class StudentService {
         log.info("Buscando o aluno: {}", student);
         return studentRepository.save(student);
     }
+
+    public Student updateStudent(Long resgistration, String name, String course) {
+        Student student = studentRepository.findById(resgistration).get();
+        student.setName(name);
+        student.setCourse(course);
+
+        return student;
+    }
+
 
 }

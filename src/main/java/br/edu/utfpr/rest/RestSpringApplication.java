@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import br.edu.utfpr.rest.service.StudentService;
+import br.edu.utfpr.rest.model.service.StudentService;
 
 @SpringBootApplication
 public class RestSpringApplication {

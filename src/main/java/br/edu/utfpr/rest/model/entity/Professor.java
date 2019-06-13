@@ -1,4 +1,4 @@
-package br.edu.utfpr.rest.model;
+package br.edu.utfpr.rest.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,13 +19,13 @@ import lombok.ToString;
 public class Professor {
 
     @Id
-    @Column(name = "registro")
+    @Column(name = "id")
     private Long registration;
 
-    @Column(name = "nome")
+    @Column
     private String name;
 
-    @Column(name = "departamento")
+    @Column
     private String departament;
 
     @ManyToOne

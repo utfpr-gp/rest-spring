@@ -1,4 +1,4 @@
-package br.edu.utfpr.rest.model;
+package br.edu.utfpr.rest.model.entity;
 
 import br.edu.utfpr.rest.model.dto.StudentDTO;
 import java.util.Date;
@@ -16,21 +16,20 @@ import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
-@Table(name = "alunos")
+@Table(name = "students")
 @Data
 public class Student {
 
     @Id
-    @Column(name = "matricula")
+    @Column(name = "id")
     private Long registration;
 
-    @Column(name = "nome")
+    @Column
     private String name;
 
-    @Column(name = "curso")
+    @Column
     private String course;
 
-    @CPF(message = "Insira um número de CPF válido.")
     @Column(updatable = false, unique = true)
     private String cpf;
 

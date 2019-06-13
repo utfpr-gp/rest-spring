@@ -1,12 +1,16 @@
 package br.edu.utfpr.rest.model.dto;
 
-import br.edu.utfpr.rest.model.Student;
+import br.edu.utfpr.rest.model.entity.Student;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.validation.BindingResult;
 
+@Data
+@NoArgsConstructor
 public class StudentDTO {
 
     private Long registration;
@@ -23,9 +27,6 @@ public class StudentDTO {
     @CPF(message = "Insira um número de CPF válido.")
     private String cpf;
 
-    public StudentDTO() {
-    }
-
     public StudentDTO(Long registration, String name, String course, String cpf) {
         this.registration = registration;
         this.name = name;
@@ -39,37 +40,4 @@ public class StudentDTO {
         this.course = student.getCourse();
         this.cpf = student.getCpf();
     }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public Long getRegistration() {
-        return registration;
-    }
-
-    public void setRegistration(Long registration) {
-        this.registration = registration;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCourse() {
-        return course;
-    }
-
-    public void setCourse(String course) {
-        this.course = course;
-    }
-
 }
