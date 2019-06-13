@@ -21,6 +21,7 @@ import br.edu.utfpr.rest.model.repository.StudentRepository;
 import br.edu.utfpr.rest.model.service.StudentService;
 import br.edu.utfpr.rest.util.Response;
 import java.util.Optional;
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -176,8 +177,9 @@ public class StudentController {
 
         Student s = studentService.findByCPF(cpf);
         if (s == null) {
-            response.addError("Aluno não encontrado.");
-            return ResponseEntity.badRequest().body(response);
+            //response.addError("Aluno não encontrado.");
+            throw new EntityNotFoundException();
+            //return ResponseEntity.badRequest().body(response);
         }
 
         StudentDTO dto = new StudentDTO(s);
@@ -328,16 +330,11 @@ public class StudentController {
         }
 
         // persiste o aluno
+        // NÃO trata de problemas gerados por não respeito às constraints do banco - CPF
+        // único - o erro será DataIntegrityViolationException e será tratado por GlobalExceptionHandler
         Student s = new Student(dto);
-        try {
-            s = studentService.save(s);
-        } catch (Exception e) {
-            // trata de problemas gerados por não respeito às constraints do banco - CPF
-            // único
-            response.addError("Houve um erro ao persistir os seus dados.");
-            return ResponseEntity.badRequest().body(response);
-        }
-
+        s = studentService.save(s);
+        
         // prepara a resposta
         dto = new StudentDTO(s);
         response.setData(dto);
