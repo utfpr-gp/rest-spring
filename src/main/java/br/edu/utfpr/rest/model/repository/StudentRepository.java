@@ -30,6 +30,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query("select s from Student s where s.name like %:name")
     Page<Student> findByNameEndsWith(@Param("name") String name, Pageable pageable);
 
-    @Query(value = "SELECT * FROM alunos WHERE curso = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM students WHERE course = ?1", nativeQuery = true)
     List<Student> findByCourse(String course);
 }

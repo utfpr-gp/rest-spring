@@ -334,7 +334,7 @@ public class StudentController {
         // único - o erro será DataIntegrityViolationException e será tratado por GlobalExceptionHandler
         Student s = new Student(dto);
         s = studentService.save(s);
-        
+
         // prepara a resposta
         dto = new StudentDTO(s);
         response.setData(dto);
