@@ -11,6 +11,9 @@
   - Validação de dados
   - Customização de Querys em Spring Data
   - Diferentes modos de invocação dos endpoints
+  - Testes de repositório 
+  - Testes de validação de DTOs
+  - Tratamento genérico de exceptions
 
 ## Tecnologias
 
